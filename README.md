@@ -6,3 +6,5 @@ PREGUNTAS FRECUENTES:
 R= Porque el emulador de voltarus wow es un emulador antiguo como tambien su base de datos en otras palabras el juego fue lanzado en 2008 entonces el juego es antiguo
 y se usa esta version antigua por ser lo mas compatible y evitar timer desfazados en el servidor voltarus, en cambio las ultimas versiones de DBM de Zidras esta dedicado
 para los Servidores de Warmane, y Warmane tiene su propia base de datos como emulador que sus Timers son diferentes por esa razon sus Dbm no funcionan bien para voltarus.
+
+Cualquier Duda o Necesiten o quieran reportar Timers en mal tiempo haganmelo saber en mi Discord: https://discord.gg/YZExJet9Wa
