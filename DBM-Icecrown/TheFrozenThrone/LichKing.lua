@@ -78,13 +78,13 @@ local timerSoulreaper	 	= mod:NewTargetTimer(5.1, 69409, nil, "Tank|Healer|Targe
 local timerSoulreaperCD	 	= mod:NewNextTimer(30.5, 69409, nil, "Tank|Healer|TargetedCooldown", nil, 5, nil, DBM_CORE_L.TANK_ICON)
 local timerHarvestSoul	 	= mod:NewTargetTimer(6, 68980)
 local timerHarvestSoulCD	= mod:NewNextTimer(96, 68980, nil, nil, nil, 6) --Fix Voltarus
-local timerInfestCD			= mod:NewNextTimer(22.5, 70541, nil, "Healer|RaidCooldown", nil, 5, nil, DBM_CORE_L.HEALER_ICON, nil, nil, 4)
+local timerInfestCD			= mod:NewNextTimer(21.5, 70541, nil, "Healer|RaidCooldown", nil, 5, nil, DBM_CORE_L.HEALER_ICON, nil, nil, 4) --fix voltarus
 local timerNecroticPlagueCleanse = mod:NewTimer(5, "TimerNecroticPlagueCleanse", 70337, "Healer", nil, 5, DBM_CORE_L.HEALER_ICON)
 local timerNecroticPlagueCD	= mod:NewNextTimer(30, 70337, nil, nil, nil, 3)
 local timerDefileCD			= mod:NewNextTimer(32.5, 72762, nil, nil, nil, 3, nil, DBM_CORE_L.DEADLY_ICON, nil, 2, 4)
-local timerEnrageCD			= mod:NewCDTimer(20, 72143, nil, "Tank|RemoveEnrage", nil, 5, nil, DBM_CORE_L.ENRAGE_ICON)
+local timerEnrageCD			= mod:NewCDTimer(24, 72143, nil, "Tank|RemoveEnrage", nil, 5, nil, DBM_CORE_L.ENRAGE_ICON) --fix voltarus enrage shambling horror
 local timerShamblingHorror 	= mod:NewNextTimer(60, 70372, nil, nil, nil, 1)
-local timerDrudgeGhouls 	= mod:NewNextTimer(20, 70358, nil, nil, nil, 1)
+local timerDrudgeGhouls 	= mod:NewNextTimer(29, 70358, nil, nil, nil, 1) --fix voltarus
 local timerRagingSpiritCD	= mod:NewNextTimer(25.5, 69200, nil, nil, nil, 1)
 local timerSoulShriekCD		= mod:NewCDTimer(12, 69242, nil, nil, nil, 1)
 local timerSummonValkyr 	= mod:NewCDTimer(45, 71844, nil, nil, nil, 1)
@@ -152,7 +152,7 @@ local function NextPhase(self)
 			timerTrapCD:Start()
 			timerNecroticPlagueCD:Start(30)
 		else
-			timerNecroticPlagueCD:Start(27)
+			timerNecroticPlagueCD:Start(30) --fix voltarus
 		end
 	elseif self.vb.phase == 2 then
 		warnPhase2:Show()
@@ -163,21 +163,21 @@ local function NextPhase(self)
 		timerSummonValkyr:Start(19)
 		timerSoulreaperCD:Start(22)
 		soundSoulReaperSoon:Schedule(22-2.5, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\soulreaperSoon.mp3")
-		timerDefileCD:Start(33)
-		timerInfestCD:Start(14)
-		soundInfestSoon:Schedule(14-2, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\infestSoon.mp3")
-		warnDefileSoon:Schedule(31)
-		warnDefileSoon:ScheduleVoice(31, "scatter") -- Voice Pack - Scatter.ogg: "Spread!"
+		timerDefileCD:Start(32) -- Fix Voltarus
+		timerInfestCD:Start(13.5) -- Fix Voltarus
+		soundInfestSoon:Schedule(13-2, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\infestSoon.mp3")
+		warnDefileSoon:Schedule(30)
+		warnDefileSoon:ScheduleVoice(30, "scatter") -- Voice Pack - Scatter.ogg: "Spread!"
 	elseif self.vb.phase == 3 then
 		warnPhase3:Show()
 		warnPhase3:Play("phasechange")
 		timerVileSpirit:Start(17.7)
 		timerSoulreaperCD:Start(25.5)
 		soundSoulReaperSoon:Schedule(25.5-2.5, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\soulreaperSoon.mp3")
-		timerDefileCD:Start(41.5)
+		timerDefileCD:Start(44) --Correcion Voltarus
 		timerHarvestSoulCD:Start(11)
-		warnDefileSoon:Schedule(39.5)
-		warnDefileSoon:ScheduleVoice(39.5, "scatter")
+		warnDefileSoon:Schedule(41.5)--Correcion Voltarus
+		warnDefileSoon:ScheduleVoice(41.5, "scatter")--Correcion Voltarus
 	end
 end
 
@@ -255,7 +255,7 @@ function mod:SPELL_CAST_START(args)
 	if args:IsSpellID(68981, 74270, 74271, 74272) or args:IsSpellID(72259, 74273, 74274, 74275) then -- Remorseless Winter (phase transition start)
 		warnRemorselessWinter:Show()
 		timerPhaseTransition:Start()
-		timerRagingSpiritCD:Start(6)
+		timerRagingSpiritCD:Start(7) --fix voltarus
 		warnShamblingSoon:Cancel()
 		timerShamblingHorror:Cancel()
 		timerDrudgeGhouls:Cancel()
@@ -356,7 +356,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			specWarnSoulreaperOtr:Play("tauntboss")
 		end
 	elseif args.spellId == 69200 then -- Raging Spirit
-		timerSoulShriekCD:Start(15, args.destName)
+		timerSoulShriekCD:Start(14, args.destName) -- fix voltarus
 		if args:IsPlayer() then
 			specWarnRagingSpirit:Show()
 			specWarnRagingSpirit:Play("targetyou")
