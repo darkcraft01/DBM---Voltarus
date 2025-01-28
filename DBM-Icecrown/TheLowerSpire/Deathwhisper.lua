@@ -200,7 +200,7 @@ function mod:OnCombatStart(delay)
 	warnAddsSoon:Schedule(2.5)			-- 3sec pre-warning on start
 	self:Schedule(5.5, addsTimer, self)
 	if not self:IsDifficulty("normal10") then
-		timerDominateMindCD:Start(27.5)		-- Sometimes 1 fails at the start, then the next will be applied 70 secs after start ?? :S
+		timerDominateMindCD:Start(30.5)		-- Sometimes 1 fails at the start, then the next will be applied 70 secs after start ?? :S FIX voltarus
 		if self.Options.RemoveDruidBuff then  -- Edit to automaticly remove Mark/Gift of the Wild on entering combat
 			self:ScheduleMethod(24, "RemoveBuffs")
 		end
@@ -316,7 +316,7 @@ function mod:SPELL_AURA_REMOVED(args)
 	if args.spellId == 70842 then
 		self:SetStage(2)
 		warnPhase2:Show()
-		timerSummonSpiritCD:Start(12)
+		timerSummonSpiritCD:Start(15) --fix voltarus
 		timerAdds:Cancel()
 		warnAddsSoon:Cancel()
 		self:Unschedule(addsTimer)

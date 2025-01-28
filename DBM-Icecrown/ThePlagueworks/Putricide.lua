@@ -185,8 +185,8 @@ function mod:SPELL_CAST_START(args)
 			timerUnboundPlagueCD:Start(120-(GetTime()-UnboundTime))
 		else
 			timerNextPhase:Start(9.5)
-			timerMalleableGooCD:Start(19)
-			soundMalleableGooSoon:Schedule(19-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3")
+			timerMalleableGooCD:Start(22) --fix voltarus
+			soundMalleableGooSoon:Schedule(22-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\malleable_soon.mp3") --fix voltarus
 			timerChokingGasBombCD:Start(30.5)
 			soundChokingGasSoon:Schedule(30.5-3, "Interface\\AddOns\\DBM-Core\\sounds\\RaidAbilities\\choking_soon.mp3")
 			warnChokingGasBombSoon:Schedule(30.5-5)

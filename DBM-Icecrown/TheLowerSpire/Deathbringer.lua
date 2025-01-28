@@ -36,7 +36,7 @@ local specwarnRuneofBloodYou= mod:NewSpecialWarningYou(72410, "Tank")
 
 local timerCombatStart		= mod:NewCombatTimer(47.3)
 local timerRuneofBlood		= mod:NewNextTimer(20, 72410, nil, "Tank|Healer", nil, 5, nil, DBM_CORE_L.TANK_ICON)
-local timerBoilingBlood		= mod:NewNextTimer(15.5, 72441, nil, "Healer", nil, 5, nil, DBM_CORE_L.HEALER_ICON)
+local timerBoilingBlood		= mod:NewNextTimer(16.3, 72441, nil, "Healer", nil, 5, nil, DBM_CORE_L.HEALER_ICON) --fix voltarus
 local timerBloodNova		= mod:NewNextTimer(20, 73058, nil, nil, nil, 2)
 local timerCallBloodBeast	= mod:NewNextTimer(40, 72173, nil, nil, nil, 1, nil, DBM_CORE_L.DAMAGE_ICON, nil, 3)
 
@@ -77,11 +77,11 @@ function mod:OnCombatStart(delay)
 	else
 		enrageTimer:Start(360-delay)
 	end
-	timerCallBloodBeast:Start(40-delay)
+	timerCallBloodBeast:Start(30-delay) --fix voltarus
 	warnAddsSoon:Schedule(30-delay)
 	timerBloodNova:Start(-delay)
 	timerRuneofBlood:Start(19.5-delay)
-	timerBoilingBlood:Start(19-delay)
+	timerBoilingBlood:Start(15.3-delay) --fix voltarus
 	table.wipe(boilingBloodTargets)
 	self.vb.warned_preFrenzy = false
 	self.vb.boilingBloodIcon = 8
@@ -222,7 +222,7 @@ function mod:CHAT_MSG_MONSTER_YELL(msg)
 			DBM.RangeCheck:Show(12)
 		end
 	elseif msg:find(L.PullHorde, 1, true) then
-		timerCombatStart:Start(82.00)
+		timerCombatStart:Start(81) --fix voltarus
 		if self.Options.RangeFrame then
 			DBM.RangeCheck:Show(12)
 		end
