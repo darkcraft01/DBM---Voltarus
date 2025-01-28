@@ -356,7 +356,7 @@ function mod:SPELL_CAST_SUCCESS(args)
 			specWarnSoulreaperOtr:Play("tauntboss")
 		end
 	elseif args.spellId == 69200 then -- Raging Spirit
-		timerSoulShriekCD:Start(14, args.destName) -- fix voltarus 3.3.5
+		timerSoulShriekCD:Start(14, args.destName) -- fix voltarus
 		if args:IsPlayer() then
 			specWarnRagingSpirit:Show()
 			specWarnRagingSpirit:Play("targetyou")
